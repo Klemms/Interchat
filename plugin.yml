@@ -1,0 +1,6 @@
+name: Interchat
+main: fr.klemms.interchat.Interchat
+version: 1.0
+depend: [SyncIt]
+load: STARTUP
+author: Klemms
