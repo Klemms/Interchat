@@ -3,6 +3,7 @@ package fr.klemms.interchat;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.klemms.interchat.events.PluginListener;
+import fr.klemms.syncit.ServerListener;
 import fr.klemms.syncit.SubscriberListener;
 import fr.klemms.syncit.SyncChannel;
 import fr.klemms.syncit.SyncItAPI;
@@ -19,7 +20,12 @@ public class Interchat extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new PluginListener(), this);
 		
 		// This is how you create a channel - - See PluginListener.java to know how to send messages
-		Interchat.chatChannel = SyncItAPI.createChannel(this, "INTERCHAT-CHAT");
+		Interchat.chatChannel = SyncItAPI.createChannel(this, "INTERCHAT-CHAT", new ServerListener() {
+				@Override
+				public void newConnection() {
+					// Here do what you want to do when a user joins the channel
+				}
+			});
 		
 		// This is how you listen to a channel
 		// NOTE : Here we listen to our own channel, but in practice listening to your own channel is useless
