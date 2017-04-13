@@ -15,5 +15,23 @@ public class PluginListener implements Listener {
 			.addData("player", event.getPlayer().getDisplayName())
 			.addData("message", event.getMessage())
 			.send();
+		
+		/* Some examples on how to ignore specific users
+		
+		It is recommended to store the result of SyncChannel#getUsersSubscribedToThisChannel() when you use it several times in a function because a new object is generated everytime you use it
+		
+		List<UUID> subscribers = Interchat.chatChannel.getUsersSubscribedToThisChannel();
+		
+		Interchat.chatChannel.newMessage()
+			.addData("player", event.getPlayer().getDisplayName())
+			.addData("message", event.getMessage())
+			.send(subscribers.get(0));
+		
+		Interchat.chatChannel.newMessage()
+			.addData("player", event.getPlayer().getDisplayName())
+			.addData("message", event.getMessage())
+			.send(subscribers.toArray(new UUID[subscribers.size()]));
+		
+		*/
 	}
 }
